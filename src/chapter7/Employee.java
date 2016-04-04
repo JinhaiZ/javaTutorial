@@ -2,14 +2,14 @@ package chapter7;
 import java.lang.Comparable;
 import java.util.Arrays;
 import java.util.Comparator;
-
-public class Employee implements Comparable {
+// add generic type
+public class Employee implements Comparable<Employee> {
 	int id;
 	String name;
 	//When we call Array.sort() method, it can use
 	//compareTo method to compare the Employee class
 	@Override
-	public int compareTo(Object o) {
+	public int compareTo(Employee o) {
 		Employee e = (Employee) o;
 		return this.id - e.id;
 	}
