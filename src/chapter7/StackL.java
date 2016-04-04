@@ -2,10 +2,10 @@ package chapter7;
 
 import java.util.LinkedList;
 
-public class StackL {
-	private LinkedList list = new LinkedList();
-	public void push(Object o) {
-		list.addFirst(o);
+public class StackL<T> {
+	private LinkedList<T> list = new LinkedList<T>();
+	public void push(T t) {
+		list.addFirst(t);
 	}
 	public Object top() {
 		return list.getFirst();
@@ -14,7 +14,7 @@ public class StackL {
 		return list.removeFirst();
 	}
 	public static void main(String args[]) {
-		StackL s = new StackL();
+		StackL<String> s = new StackL<String>();
 		s.push("Kevin");
 		s.push("Lisa");
 		s.push("Adele");
