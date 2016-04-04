@@ -35,5 +35,10 @@ public class Employee implements Comparable {
 		for (int i = 0; i < employeeList.length; i++) {
 			System.out.println(employeeList[i]);
 		}
+		
+		Arrays.sort(employeeList, new DescComparator());
+		for (int i = 0; i < employeeList.length; i++) {
+			System.out.println(employeeList[i]);
+		}
 	}
 }
