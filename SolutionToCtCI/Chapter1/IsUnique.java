@@ -8,19 +8,14 @@ public class IsUnique {
 		if(word.length() > 128)
 			return false;
 		boolean flag[] = new boolean[128];
-		int counter = 0;
 		for (int i = 0; i < word.length(); i++) {
 			int index = word.charAt(i); 
-			flag[index] = true; 
+			if (flag[index] == true)
+				return false;
+			else;
+				flag[index] = true; 
 		}
-		for (int i = 0; i < 128; i++) {
-			if (flag[i] == true)
-				counter ++;
-		}
-		if (counter == word.length())
-			return true;
-		else
-			return false;
+		return true;
 	}
 	public static void main(String Args[]) {
 		String[] words = {"abcde", "hello", "apple", "kite", "padle"};
