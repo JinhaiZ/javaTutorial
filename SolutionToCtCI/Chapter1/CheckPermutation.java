@@ -6,18 +6,15 @@ public class CheckPermutation {
 	public static boolean checkPermutation (String s1, String s2) {
 		if (s1.length()!=s2.length())
 			return false;
-		int check1[] = new int [256]; 
+		int check[] = new int [256]; // Assume character set is EASCII
 		for (int i = 0; i < s1.length(); i++) {
 			int index = s1.charAt(i);
-			check1[index]++;
+			check[index]++;
 		}
-		int check2[] = new int [256]; 
 		for (int i = 0; i < s2.length(); i++) {
 			int index = s2.charAt(i);
-			check2[index]++;
-		}
-		for (int i = 0; i < 256; i++) {
-			if (check1[i] != check2[i])
+			check[index]--;
+			if (check[index] < 0)
 				return false;
 		}
 		return true;
