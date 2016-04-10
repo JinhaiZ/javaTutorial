@@ -3,29 +3,33 @@ package Chapter1;
 import CtCILibrary.AssortedMethods;
 
 public class ZeroMatrix {
-	public static int[][] zeroMatrix(int[][] matrix) {
+	public static void zeroMatrix(int[][] matrix) {
 		int row = matrix.length;
 		int column = matrix[0].length;
-		int[][] location = new int[row*column][2];
-		int count = 0;
+		boolean rowFlag[] = new boolean[row];
+		boolean columnFlag[] = new boolean[column];
 		for (int i = 0; i < row; i++) {
 			for (int j =0; j < column; j++) {
 				if (matrix[i][j] == 0) {
-					location[count][0] = i;
-					location[count][1] = j;
-					count++;
+					rowFlag[i] = true;
+					columnFlag[j] = true;
 				}
 			}
 		}
-		for (int c = 0; c < count; c++) {
-			int x = location[c][0];
-			int y = location[c][1];
-			for (int i = 0; i < column; i++)
-				matrix[x][i] = 0;
-			for (int j = 0; j < row; j++)
-				matrix[j][y] = 0;
+		for(int i = 0; i < row; i++) {
+			if(rowFlag[i]) {
+				for(int j = 0; j < column; j++ ) {
+					matrix[i][j] = 0;
+				}
+			}
 		}
-		return matrix;
+		for(int j = 0; j < column; j++) {
+			if(columnFlag[j]) {
+				for(int i = 0; i < row; i++ ) {
+					matrix[i][j] = 0;
+				}
+			}
+		}
 	}
 	public static void main(String args[]) {
 		int nrows = 10;
@@ -42,6 +46,6 @@ public class ZeroMatrix {
 	}
 }
 /*
- * Space Complexity O(MN), M and N are row and column of the input matrix separately  
+ * Space Complexity O(N)
  * Time Complexity O(MN), M and N are row and column of the input matrix separately 
  */
