@@ -1,12 +1,6 @@
 package Chapter1;
 
 public class PalindromePermuation {
-	public static boolean isEven(int i) {
-		if (i%2 == 0)
-			return true;
-		else
-			return false;
-	}
 	/* Assumes only letters a through z. */
 	public static int[] collect(String str) {
 		str = str.toLowerCase();
@@ -18,45 +12,24 @@ public class PalindromePermuation {
 		}
 		return c;
 	}
-	public static int trueLength(int[] c) {
-		if ((c.length < 0)||(c.length > 26))
-			return -1;
-		int count = 0;
-		for (int i =0; i < 26; i++) {
-			count = count + c[i];
-		}
-		return count;
-	}
-	public static boolean isEvenString(int[] c) {
+	
+	public static boolean checkMaxOdd(int[] c) {
+		boolean odd = false;
 		if ((c.length < 0)||(c.length > 26))
 			return false;
-		
 		for (int i = 0; i < 26; i++) {
-			if (!isEven(c[i]))
-				return false;
+			if (c[i]%2 == 1){
+				if (odd)
+					return false;
+				odd = true;
+			}
 		}
 		return true;
 	}
-	public static boolean isOddString(int[] c) {
-		int odd = 0;
-		if ((c.length < 0)||(c.length > 26))
-			return false;
-		for (int i = 0; i < 26; i++) {
-			if (!isEven(c[i]))
-				odd++;
-		}
-		if (odd == 1)
-			return true;
-		else
-			return false;
-	}
+	
 	public static boolean isPalindromePermuation (String str) {
 		int c[] = collect(str);
-		int len = trueLength(c);
-		if (isEven(len))
-			return isEvenString(c);
-		else
-			return isOddString(c);
+		return checkMaxOdd(c);
 	}
 	
 	public static void main(String[] args) {
@@ -66,3 +39,7 @@ public class PalindromePermuation {
 		System.out.println(isPalindromePermuation(pali2));
 	}
 }
+/*
+ * Space Complexity O(1), just a integer table needs to be saved
+ * Time Complexity O(N), N is the length of the string
+ */
