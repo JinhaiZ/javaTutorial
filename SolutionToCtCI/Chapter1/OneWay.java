@@ -15,16 +15,19 @@ public class OneWay {
 	}
 	
 	public static boolean isInRm(char[] c1, char[] c2){
-		boolean flag = false;
-		int j = 0;
-		for(int i = 0; i < c2.length; i++) {
-			if(c1[i]!=c2[i-j]) {
-				if(flag)
+		int index1 = 0;
+		int index2 = 0;
+		while (index1 < c1.length && index2 < c2.length) {
+			if (c1[index1] != c2[index2]) {
+				if (index1 != index2) {
 					return false;
-				flag = true;
-				j=1;
 				}
+				index1++;
+			} else {
+			index1++;
+			index2++;
 			}
+		}
 		return true;
 	}
 
