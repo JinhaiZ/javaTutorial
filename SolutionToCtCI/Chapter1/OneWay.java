@@ -33,12 +33,14 @@ public class OneWay {
 		char c2[] = s2.toCharArray();
 		int len1 = c1.length;
 		int len2 = c2.length;
-		if (len1 == len2)
-			return isReplace(c1,c2);
-		if (len1 > len2)
+		if (len1 == len2) {
+			return isReplace(c1,c2); 
+		} else if (len1 == len2 + 1) {
 			return isInRm(c1,c2);
-		else
+		} else if (len2 == len1 + 1) {
 			return isInRm(c2,c1);
+		} 
+		return false;
 	}
 	public static void main(String[] args) {
 		String a = "palee";
