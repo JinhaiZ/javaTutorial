@@ -4,7 +4,7 @@ public class OneWay {
 	/* Assumes input is ASCII*/
 	public static boolean isReplace(char[] c1, char[] c2){
 		boolean flag = false;
-		for(int i = 0; i < c1.length; i++) {
+		for(int i = 0; i < c2.length; i++) {
 			if(c1[i]!=c2[i]) {
 				if (flag)
 					return false;
@@ -18,7 +18,7 @@ public class OneWay {
 		boolean flag = false;
 		int j = 0;
 		for(int i = 0; i < c2.length; i++) {
-			if(c1[i+j]!=c2[i]) {
+			if(c1[i]!=c2[i-j]) {
 				if(flag)
 					return false;
 				flag = true;
@@ -43,16 +43,28 @@ public class OneWay {
 		return false;
 	}
 	public static void main(String[] args) {
-		String a = "palee";
-		String b = "pale";
-		boolean isOneEdit1 = isOneWay(a, b);
-		System.out.println(a + ", " + b + ": " + isOneEdit1);
-
-		String c = "pale";
-		String d = "pkle";
-		boolean isOneEdit2 = isOneWay(c, d);
-		System.out.println(c + ", " + d + ": " + isOneEdit2);
-	}
+		String[][] tests = {{"a", "b", "true"}, 
+				{"", "d", "true"},
+				{"d", "de", "true"},
+				{"pale", "pse", "false"},
+				{"acdsfdsfadsf", "acdsgdsfadsf", "true"},
+				{"acdsfdsfadsf", "acdsfdfadsf", "true"},
+				{"acdsfdsfadsf", "acdsfdsfads", "true"},
+				{"acdsfdsfadsf", "cdsfdsfadsf", "true"},
+				{"adfdsfadsf", "acdfdsfdsf", "false"},
+				{"adfdsfadsf", "bdfdsfadsg", "false"},
+				{"adfdsfadsf", "affdsfads", "false"},
+				{"pale", "pkle", "true"},
+				{"pkle", "pable", "false"}};
+		
+		for (int i = 0; i < tests.length; i++) {
+			String[] test = tests[i];
+			String a = test[0];
+			String b = test[1];
+			boolean expected = test[2].equals("true");
+			System.out.println(isOneWay(a,b) == expected);
+			}
+ 		}
 }
 /*
  * Space Complexity O(N), N is the length of the string
