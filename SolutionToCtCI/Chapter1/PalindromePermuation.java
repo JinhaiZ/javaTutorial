@@ -1,7 +1,7 @@
 package Chapter1;
 
 public class PalindromePermuation {
-	/* Assumes only letters a through z. */
+	/* Assumes only letters a through z and A through Z*/
 	public static int[] collect(String str) {
 		str = str.toLowerCase();
 		int c[] = new int[26];
