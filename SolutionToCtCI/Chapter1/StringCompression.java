@@ -16,19 +16,13 @@ public class StringCompression {
 			}
 		}
 		com.append(current+String.valueOf(count));
-		if (com.length() < str.length()) {
-			return com.toString();
-		} else {
-			return str;
-		}
-		
+		return com.length() < str.length() ? com.toString(): str;		
 	}
 	public static void main(String args[]) {
 		String str = "aa";
 		//System.out.println(str);
 		System.out.println(stringCompression(str));
 	}
-
 }
 /*
  * Space Complexity O(N), N is the length of the string
