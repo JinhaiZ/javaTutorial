@@ -4,27 +4,21 @@ import CtCILibrary.AssortedMethods;
 import CtCILibrary.LinkedListNode;
 
 public class DeleteMiddleNode {
-	//assume have access to the head node
-	public static void deleteMiddleNode(LinkedListNode head) {
-		LinkedListNode current = head;
-		LinkedListNode runner = head;
-		LinkedListNode prev = head;
-		int index = 0;
-		while (current.next != null) {
-			current = current.next;
-			index ++;
-			if (index%2 == 0 ) {
-				prev = runner;
-				runner = runner.next;
-			}
-		}
-		prev.next = runner.next;
+	//given only access to that node
+	public static boolean deleteMiddleNode(LinkedListNode node) {
+		if (node == null || node.next == null ) {
+			return false;
+		} 
+		LinkedListNode next = node.next;
+		node.data = next.data;
+		node.next = next.next;
+		return true;	
 	}
 	
 	public static void main(String[] args) {
 		LinkedListNode head = AssortedMethods.randomLinkedList(10, 0, 10);
 		System.out.println(head.printForward());
-		deleteMiddleNode(head); // delete node 4
+		deleteMiddleNode(head.next.next.next.next); // delete node 4
 		System.out.println(head.printForward());
 	}
 }
