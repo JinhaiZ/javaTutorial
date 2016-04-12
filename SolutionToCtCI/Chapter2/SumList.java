@@ -4,13 +4,10 @@ import CtCILibrary.LinkedListNode;
 
 public class SumList {
 	private static int linkedListToInt(LinkedListNode node) {
-		int num = 0;
-		int ind = 0;
-		while (node != null) {
-			num += node.data*Math.pow(10,ind++);
-			node = node.next;
+		if (node.next == null) {
+			return node.data;
 		}
-		return num;
+		return linkedListToInt(node.next) * 10 + node.data;
 	}
 	
 	private static LinkedListNode intToLinkedList(int sum) {
