@@ -7,9 +7,7 @@ import CtCILibrary.LinkedListNode;
 public class RemoveDups {
 	public static void removeDups(LinkedListNode node) {
 		HashSet<Integer> dups = new HashSet<Integer>();
-		dups.add(node.data);
-		node = node.next;
-		LinkedListNode priv = node;
+		LinkedListNode priv = null;
 		while (node != null) {
 			if (dups.contains(node.data)) {
 				priv.next = node.next;
@@ -36,3 +34,8 @@ public class RemoveDups {
 		System.out.println(head.printForward());
 	}
 }
+/*
+ * Space Complexity O(N) where N is the number of elements in the buffer
+ * Time Complexity O(N) where N is the number of elements in the linked list
+ * 
+*/
