@@ -1,21 +1,23 @@
 package Chapter2;
 
-import java.util.*;
 
 import CtCILibrary.LinkedListNode;
 
 public class RemoveDups {
 	public static void removeDups(LinkedListNode node) {
-		HashSet<Integer> dups = new HashSet<Integer>();
-		LinkedListNode priv = null;
-		while (node != null) {
-			if (dups.contains(node.data)) {
-				priv.next = node.next;
-			} else {
-				dups.add(node.data);
-				priv = node;
+		//HashSet<Integer> dups = new HashSet<Integer>();
+		LinkedListNode slow = node;
+		while (slow != null) {
+			LinkedListNode fast = slow;
+			//LinkedListNode prev = null;
+			while (fast.next != null) {
+				if (fast.next.data == slow.data) {
+					fast.next = fast.next.next;
+				} else {
+					fast = fast.next;
+				}
 			}
-			node = node.next;
+			slow = slow.next;
 		}
 	}
 	
@@ -35,7 +37,7 @@ public class RemoveDups {
 	}
 }
 /*
- * Space Complexity O(N) where N is the number of elements in the buffer
- * Time Complexity O(N) where N is the number of elements in the linked list
+ * Space Complexity O(1) 
+ * Time Complexity O(N^2) where N is the number of elements in the linked list
  * 
 */
