@@ -4,14 +4,23 @@ import CtCILibrary.AssortedMethods;
 import CtCILibrary.LinkedListNode;
 
 public class ReturnKthToLastRecursive {
-	public static int returnKthToLastRecursive(LinkedListNode head, int k){
+	public static class Index {
+		int value;
+	}
+	
+	public static LinkedListNode returnKthToLastRecursive(LinkedListNode head, int k) {
+		Index index = new Index();
+		return returnKthToLastRecursive(head, k, index);
+	}
+	public static LinkedListNode returnKthToLastRecursive(LinkedListNode head, int k, Index index){
 		if (head == null) {
-			return 0;
+			return null;
 		} else {
-			int index = returnKthToLastRecursive(head.next, k) + 1;
-			if (index == k )
-				System.out.println(index+": "+head.data);
-			return index;
+			LinkedListNode node = returnKthToLastRecursive(head.next, k, index);
+			index.value ++;
+			if (index.value == k )
+				return head;
+			return node;
 		}
 
 	}
@@ -19,7 +28,9 @@ public class ReturnKthToLastRecursive {
 		int[] array = {0, 1, 2, 3, 4, 5, 6};
 		LinkedListNode head = AssortedMethods.createLinkedListFromArray(array);
 		for (int i = 0; i <= array.length + 1; i++) {
-			returnKthToLastRecursive(head,i);
+			LinkedListNode node = returnKthToLastRecursive(head, i);
+			String nodeValue = node == null ? "null" : "" + node.data;
+			System.out.println(i + ": " + nodeValue);
 		}
 	}
 }
