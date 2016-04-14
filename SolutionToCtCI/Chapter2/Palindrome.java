@@ -1,20 +1,29 @@
 package Chapter2;
 
+import java.util.Stack;
+
 import CtCILibrary.LinkedListNode;
 
 public class Palindrome {
-	/*assume input linked list is a double linked list*/
+	/*assume input linked list is a single linked list*/
 	public static boolean isPalindrome (LinkedListNode head) {
-		LinkedListNode tail = head;
-		while (tail.next != null) {
-			tail = tail.next;
+		LinkedListNode current = head;
+		LinkedListNode runner = head;
+		Stack<Integer> count = new Stack<Integer>();
+		while (current != null && current.next != null) {
+			current = current.next.next;
+			count.push(runner.data);
+			runner = runner.next;
 		}
-		while (head!= null) {
-			if (tail.data != head.data) {
+		if (current != null) {//in case of length is odd
+			runner = runner.next;
+		}
+		current = head;
+		while (runner != null) {
+			if (count.pop() != runner.data ) {
 				return false;
 			}
-			tail = tail.prev;
-			head = head.next;
+			runner = runner.next;
 		}
 		return true;
 	}
@@ -33,7 +42,7 @@ public class Palindrome {
 				nodes[i].setPrevious(nodes[i - 1]);
 			}
 		}
-		// nodes[length - 2].data = 9; // Uncomment to ruin palindrome
+		//nodes[length - 2].data = 9; // Uncomment to ruin palindrome
 		
 		LinkedListNode head = nodes[0];
 		System.out.println(head.printForward());
